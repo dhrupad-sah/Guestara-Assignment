@@ -83,15 +83,15 @@ exports.getItemsByCategory = async (req, res) => {
   try {
     // Find the category by its ID using the Category model and populate the 'items' field
     const categoryId = req.params.categoryId;
-    const category = await Category.findById(categoryId).populate('items');
-
+    const category = await Category.findById(categoryId).populate('subcategories');
+    const subcategory = await SubCategory.findById(category.subcategories[0]._id).populate('items');
     // If the category is not found, return a 404 (Not Found) status code with an error message
     if (!category) {
       return res.status(404).json({ error: 'Category not found' });
     }
 
     // Return the fetched items as the response
-    res.json(category.items);
+    res.json(subcategory.items);
   } catch (err) {
     // If an error occurs during item retrieval, return a 500 (Internal Server Error) status code with the error message
     res.status(500).json({ error: err.message });
