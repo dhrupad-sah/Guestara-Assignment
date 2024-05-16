@@ -4,8 +4,8 @@ This is a Node.js backend application for menu management. It allows you to crea
 
 ## Prerequisites
 
-- Node.js (version X.X.X or higher)
-- MongoDB (or any other database of your choice)
+- Node.js 
+- MongoDB 
 
 ## Getting Started
 
